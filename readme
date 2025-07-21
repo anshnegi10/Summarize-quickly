@@ -1,0 +1,159 @@
+AWS EC2 Cost Optimization & Smart Notes Summarizer
+🚀 Project Purpose
+This project is a personal learning experience to explore how AWS services and AI can be combined in real-world automation. My motivation was to build a hands-on solution that:
+
+Monitors and optimizes AWS EC2 usage (saving money!),
+
+Lets me quickly summarize PPTX and PDF notes using Together AI,
+
+Stores and accesses all reports/summaries easily via S3, and
+
+Teaches me how different AWS components fit together in practice.
+
+✨ Features
+
+EC2 Cost Analysis & Automated Suggestions
+
+Analyzes running EC2 instances with CloudWatch metrics.
+
+Generates CSV reports with cost-saving recommendations.
+
+Uploads reports to Amazon S3 for easy cloud access.
+
+AI Document Summarization
+
+Summarizes PPTX and PDF files using Together AI.
+
+Saves each summary as a .txt file (locally & in S3).
+
+Optionally logs metadata to DynamoDB for potential search/Audit.
+
+User-Friendly & Flexible
+
+Command-line prompts for summarizing any file.
+
+Supports batch/bulk processing with a few lines.
+
+All errors and troubleshooting steps included—see below!
+
+
+🛠️ What I Learned
+How to connect, automate, and manage AWS EC2, S3, DynamoDB, and CloudWatch from Python.
+
+Integrating third-party AI services (Together AI) in a real use-case.
+
+Automating S3 upload/download and leveraging event-driven AWS architecture.
+
+Common pitfalls and best practices for secrets/configuration management.
+
+Debugging, error handling, and the importance of virtual environments.
+
+
+lambda_summarizer/
+├── .env                    # Environment variables (not committed)
+├── .gitignore             # Git ignore file
+├── annotated_types/
+│   ├── main.py            # Main application logic
+│   ├── lambda_function.py # AWS Lambda handler
+│   ├── __init__.py        # Package initialization
+│   └── test_cases.py      # Test cases
+├── .venv/                 # Virtual environment (not committed)
+└── README.md              # This file
+
+![alt text](Reports.png)
+![alt text](instance.png)
+![alt text](<repots saves to s3.png>)
+![alt text](<ppt has been summarized.png>)
+
+
+
+🗂️ How It Works
+Run the script (in .venv):
+python annotated_types/main.py
+
+It produces:
+
+A cost optimization CSV report, uploaded to S3.
+
+An AI summary of that report, also uploaded to S3.
+
+Optionally, summarized PPTX or PDF when prompted (and uploads those summaries too).
+
+Everything is always available in your S3 bucket for easy download and sharing!
+
+| Service  | What I used it for                  |
+|----------|-------------------------------------|
+| S3       | Store reports, summaries, uploads   |
+| EC2      | Run instances & cost optimization   |
+| CloudWatch | Fetch & analyze instance metrics  |
+| DynamoDB | (Optional) Log summary/report info  |
+| Lambda   | (Future) Auto-summarize on upload   |
+| IAM      | Secure access and permissions       |
+
+💡 My Personal Experience & Reflections
+Working on this project, I:
+
+Ran into plenty of errors and learned how to properly debug Python, AWS, and API usage.
+
+Realized the importance of always being careful with file paths, venv activation, and env vars.
+
+Learned to package Lambda functions with dependencies for cloud automation.
+
+Discovered how easy it is to trigger powerful AI (and cloud automations) from simple user actions like uploading a file to S3.
+
+Gained real confidence in linking AWS infrastructure with intelligent workflows!
+
+
+
+📦 How To Use
+Clone the project & set up your .venv
+
+Create a .env with your credentials:
+1- AWS_REGION=us-east-1
+2- S3_BUCKET=your-s3-bucket
+3- DYNAMO_TABLE=your-dynamodb-table  # optional
+4- TOGETHER_API_KEY=your-together-api-key
+
+
+Install requirements:
+
+pip install boto3 pandas requests python-dotenv python-pptx pdfplumber
+
+
+
+Run:
+
+python annotated_types/main.py
+
+📥 Summarizing PPTX or PDF Files
+
+After the EC2 cost analysis and report generation, the script will prompt you to enter the full path to a PPTX or PDF file. If you provide a file path, the program will:
+
+Process the document (PPTX or PDF).
+
+Generate an AI-powered summary as a .txt file.
+
+Automatically upload the summary file to your specified S3 bucket for cloud storage.
+
+If you don’t want to summarize a document at that time, you can simply press Enter to skip this step.
+
+It will give like this:
+Enter full path to a PPTX or PDF to summarize (or press Enter to skip): C:\Users\YourName\Documents\lecture.pptx
+PPTX summary written to: C:\Users\YourName\Documents\lecture_summary.txt
+✅ Uploaded to s3://your-bucket/lecture_summary.txt
+
+
+
+🔒 Security Reminders
+
+Never commit your .env file or API keys.
+
+Always use IAM roles with the minimum required permissions.
+
+Regularly audit S3 and DynamoDB permissions.
+
+
+👋 Final Thoughts
+This project is a snapshot of my AWS learning journey. Every error taught me something new, every success was more satisfying. If you are learning AWS, AI integration, or want a solid boilerplate for cloud document automation, I hope this helps.
+
+"Learning by building and fixing is the best way to master the cloud."
