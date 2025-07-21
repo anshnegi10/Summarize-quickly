@@ -49,17 +49,13 @@ Common pitfalls and best practices for secrets/configuration management.
 
 Debugging, error handling, and the importance of virtual environments.
 
-
 lambda_summarizer/
-├── .env                    # Environment variables (not committed)
-├── .gitignore             # Git ignore file
+├── .env
+├── .gitignore
 ├── annotated_types/
-│   ├── main.py            # Main application logic
-│   ├── lambda_function.py # AWS Lambda handler
-│   ├── __init__.py        # Package initialization
-│   └── test_cases.py      # Test cases
-├── .venv/                 # Virtual environment (not committed)
-└── README.md              # This file
+│ ├── main.py
+│ └── lambda_function.py
+└── README.md
 
 ![alt text](Reports.png)
 ![alt text](instance.png)
