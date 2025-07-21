@@ -66,7 +66,7 @@ lambda_summarizer/
 ![alt text](<repots saves to s3.png>)
 ![alt text](<ppt has been summarized.png>)
 
-
+ClONE THE REPOSITORY - https://github.com/anshnegi10/Summarize-quickly.git
 
 🗂️ How It Works
 Run the script (in .venv):
